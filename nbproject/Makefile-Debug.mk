@@ -35,9 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/1853959345/irrecv.o \
-	${OBJECTDIR}/NecProtocolReader.o \
-	${OBJECTDIR}/irrecv.o
+	${OBJECTDIR}/src/NecProtocolReader.o \
+	${OBJECTDIR}/src/irrecv.o
 
 
 # C Compiler Flags
@@ -64,20 +63,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/irrecv: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/irrecv ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/_ext/1853959345/irrecv.o: ../../work/irrecv.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1853959345
+${OBJECTDIR}/src/NecProtocolReader.o: src/NecProtocolReader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1853959345/irrecv.o ../../work/irrecv.c
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NecProtocolReader.o src/NecProtocolReader.cpp
 
-${OBJECTDIR}/NecProtocolReader.o: NecProtocolReader.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/irrecv.o: src/irrecv.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NecProtocolReader.o NecProtocolReader.cpp
-
-${OBJECTDIR}/irrecv.o: irrecv.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/irrecv.o irrecv.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/irrecv.o src/irrecv.cpp
 
 # Subprojects
 .build-subprojects:

@@ -4,8 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>NecProtocolReader.hpp</itemPath>
-      <itemPath>Protocols.hpp</itemPath>
+      <itemPath>src/NecProtocolReader.hpp</itemPath>
+      <itemPath>src/Protocols.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -14,9 +14,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>NecProtocolReader.cpp</itemPath>
-      <itemPath>../../work/irrecv.c</itemPath>
-      <itemPath>irrecv.cpp</itemPath>
+      <itemPath>src/NecProtocolReader.cpp</itemPath>
+      <itemPath>src/irrecv.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -45,15 +44,13 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="../../work/irrecv.c" ex="false" tool="0" flavor2="0">
+      <item path="src/NecProtocolReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="NecProtocolReader.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/NecProtocolReader.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="NecProtocolReader.hpp" ex="false" tool="3" flavor2="0">
+      <item path="src/Protocols.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Protocols.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="irrecv.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/irrecv.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -82,15 +79,13 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="../../work/irrecv.c" ex="false" tool="0" flavor2="0">
+      <item path="src/NecProtocolReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="NecProtocolReader.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/NecProtocolReader.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="NecProtocolReader.hpp" ex="false" tool="3" flavor2="0">
+      <item path="src/Protocols.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Protocols.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="irrecv.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/irrecv.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

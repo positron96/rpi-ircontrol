@@ -18,6 +18,7 @@ const int THRES = 300;
 inline int PULSEIN(int pulse, int dur)	{ return abs(pulse-dur)<THRES; }
 
 
+/** Prints current date&time (used for debug logging) */
 char* dt() {
 	time_t tt = time(0);
 	char *v = ctime(&tt);

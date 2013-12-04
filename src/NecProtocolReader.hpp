@@ -1,5 +1,5 @@
 /*
- * File:   NecProtocolReader.h
+ * File:   NecProtocolReader.hpp
  * Author: positron
  *
  * Created on December 4, 2013, 8:37 PM
