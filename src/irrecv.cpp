@@ -15,7 +15,6 @@
 
 using namespace std;
 
-#define MAXTIMINGS 85
 #define PIN 1
 
 int last;
@@ -51,12 +50,9 @@ int main(int argc, char** argv) {
 	pinMode(PIN, INPUT);
 
 	while (1) {
-		//cout<<"step, lastCmd="<<lastCmd<<endl;
-
 		if(lastCmd!=0) {
 			cout<<"Got cmd "<<lastCmd<<"; switching led"<<endl;
 
-			//system("cat irrecv.log.txt | sendmail -f \"Berry admin <devedroid@gmail.com>\" pvm96@yandex.ru");
 			char cmd[255];
 			sprintf(cmd, "./lightcontrol -m \"IR beacon cmd %d\"", lastCmd);
 			system(cmd);
