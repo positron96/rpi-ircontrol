@@ -35,7 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/src/NecProtocolReader.o \
+	${OBJECTDIR}/src/NecReader.o \
+	${OBJECTDIR}/src/NikonReader.o \
 	${OBJECTDIR}/src/irrecv.o
 
 
@@ -63,10 +64,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/irrecv: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/irrecv ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/src/NecProtocolReader.o: src/NecProtocolReader.cpp 
+${OBJECTDIR}/src/NecReader.o: src/NecReader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NecProtocolReader.o src/NecProtocolReader.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NecReader.o src/NecReader.cpp
+
+${OBJECTDIR}/src/NikonReader.o: src/NikonReader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NikonReader.o src/NikonReader.cpp
 
 ${OBJECTDIR}/src/irrecv.o: src/irrecv.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

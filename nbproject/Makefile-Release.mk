@@ -35,7 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/src/NecProtocolReader.o \
+	${OBJECTDIR}/src/NecReader.o \
+	${OBJECTDIR}/src/NikonReader.o \
 	${OBJECTDIR}/src/irrecv.o
 
 
@@ -63,10 +64,15 @@ LDLIBSOPTIONS=-lwiringPi
 	${MKDIR} -p /home/osman/work
 	${LINK.cc} -o /home/osman/work/irrecv ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/src/NecProtocolReader.o: src/NecProtocolReader.cpp 
+${OBJECTDIR}/src/NecReader.o: src/NecReader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NecProtocolReader.o src/NecProtocolReader.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NecReader.o src/NecReader.cpp
+
+${OBJECTDIR}/src/NikonReader.o: src/NikonReader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NikonReader.o src/NikonReader.cpp
 
 ${OBJECTDIR}/src/irrecv.o: src/irrecv.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

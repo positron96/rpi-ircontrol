@@ -9,9 +9,12 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
+#include <vector>
+#include <typeinfo>
 
 #include "Protocols.hpp"
-#include "NecProtocolReader.hpp"
+#include "NecReader.hpp"
+#include "NikonReader.hpp"
 
 using namespace std;
 
@@ -20,20 +23,29 @@ using namespace std;
 int last;
 
 int lastCmd=0;
+ProtocolReader *lastSender;
 
 void cmdReceived(ProtocolReader *sender, int addr, int cmd1, int cmd2) {
 
 	lastCmd = cmd1;
+	lastSender = sender;
 	//cout<<"callback called cmd1="<<cmd1<<" lastCmd="<<lastCmd<<endl;
 };
 
-NecProtocolReader reader(&cmdReceived);
+
+vector< ProtocolReader* > handlers;
+//ProtocolReader reader(&cmdReceived);
 
 void intr() {
 //    if(cpulse>=NPULSES) return;
     int v = digitalRead(PIN);
     int cur = micros();
-	reader.addPulse(cur-last, v );
+
+	for(vector<ProtocolReader* >::iterator it = handlers.begin();
+			it != handlers.end(); ++it) {
+		(*it)->addPulse(cur-last, v);
+	}
+	//reader.addPulse(cur-last, v );
     //addCmd(cur-last, digitalRead(PIN) );
     //pulses[cpulse++] = (cur-last) ;
     last = cur;
@@ -44,6 +56,9 @@ int main(int argc, char** argv) {
 	if (wiringPiSetup() == -1)
 		exit(1);
 
+	handlers.push_back( new NecReader(&cmdReceived) );
+	handlers.push_back( new NikonReader(&cmdReceived) );
+
 	last = micros();
 	wiringPiISR(PIN, INT_EDGE_BOTH, &intr);
 
@@ -51,12 +66,13 @@ int main(int argc, char** argv) {
 
 	while (1) {
 		if(lastCmd!=0) {
-			cout<<"Got cmd "<<lastCmd<<"; switching led"<<endl;
+			cout<<"Got cmd "<<lastCmd<<" from "<<typeid(*lastSender).name()<<"; switching led"<<endl;
 
 			char cmd[255];
-			sprintf(cmd, "./lightcontrol -m \"IR beacon cmd %d\"", lastCmd);
+			sprintf(cmd, "./lightcontrol -m \"IR beacon cmd %d from %s\"", lastCmd, typeid(*lastSender).name() );
 			system(cmd);
 			lastCmd = 0;
+			lastSender = NULL;
 
 		}
 		delay(50);

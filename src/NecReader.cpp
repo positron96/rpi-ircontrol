@@ -10,13 +10,9 @@
 #include <ctime>
 #include <cstring>
 
-#include "NecProtocolReader.hpp"
+#include "NecReader.hpp"
 
 #define printf(fmt, ...) (0)
-
-const int THRES = 300;
-inline int PULSEIN(int pulse, int dur)	{ return abs(pulse-dur)<THRES; }
-
 
 /** Prints current date&time (used for debug logging) */
 char* dt() {
@@ -26,12 +22,12 @@ char* dt() {
 	return v;
 }
 
-NecProtocolReader::NecProtocolReader(CallbackFunc ff):ProtocolReader(ff),
+NecReader::NecReader(CallbackFunc ff):ProtocolReader(ff),
 	cState(NOTHING), cPos(0) {
 	//printf("NecProtocolReader()\n");
 }
 
-void NecProtocolReader::addPulse (int pulse, int val) {
+void NecReader::addPulse (int pulse, int val) {
 	//std::cout<<"NecProtocolReader::addPulse "<<val<<" "<<pulse<<std::endl;
 /*	if(cState==NOTHING)
 		printf("%s: GOT %d for %dus, state is %d\n", dt(),val, pulse, cState);
@@ -98,9 +94,9 @@ void NecProtocolReader::addPulse (int pulse, int val) {
 				cState = CMD;
 				return;
 			}
-			if(val==0 && PULSEIN(pulse, 562)) return;
+			if(val==0 && PULSEIN(pulse, 560)) return;
 			if(val==0 && PULSEIN(pulse, 1687)) return;
-			if(val==1 && PULSEIN(pulse, 562) ) return;
+			if(val==1 && PULSEIN(pulse, 560) ) return;
 			break;
 		case CMD:
 			if(cPos<8 && val==0) {
@@ -146,7 +142,7 @@ void NecProtocolReader::addPulse (int pulse, int val) {
 	cState = NOTHING;
 }
 
-NecProtocolReader::~NecProtocolReader() {
+NecReader::~NecReader() {
 	//printf("~NecProtocolReader()\n");
 }
 
