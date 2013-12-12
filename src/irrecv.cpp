@@ -37,7 +37,6 @@ vector< ProtocolReader* > handlers;
 //ProtocolReader reader(&cmdReceived);
 
 void intr() {
-//    if(cpulse>=NPULSES) return;
     int v = digitalRead(PIN);
     int cur = micros();
 
@@ -45,9 +44,6 @@ void intr() {
 			it != handlers.end(); ++it) {
 		(*it)->addPulse(cur-last, v);
 	}
-	//reader.addPulse(cur-last, v );
-    //addCmd(cur-last, digitalRead(PIN) );
-    //pulses[cpulse++] = (cur-last) ;
     last = cur;
 }
 

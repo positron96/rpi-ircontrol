@@ -29,12 +29,12 @@ NecReader::NecReader(CallbackFunc ff):ProtocolReader(ff),
 
 void NecReader::addPulse (int pulse, int val) {
 	//std::cout<<"NecProtocolReader::addPulse "<<val<<" "<<pulse<<std::endl;
-/*	if(cState==NOTHING)
+	if(cState==NOTHING)
 		printf("%s: GOT %d for %dus, state is %d\n", dt(),val, pulse, cState);
 	else
 		printf("%s: GOT %d for %dus, state is %d; pos=%d, addr/~addr=%d/%d,  cmd/cmd2=%d/%d\n", dt(),
 			val, pulse, cState, cPos, cAddr, cAddrI, cCmd, cCmd2);
- */
+
 	switch(cState) {
 		case NOTHING:
 			if(val==1 && PULSEIN(pulse,9000)) {
@@ -76,8 +76,10 @@ void NecReader::addPulse (int pulse, int val) {
 			break;
 		case ADDR:
 			if(cPos<16 && val==0) {
-				if(cPos<8) if(pulse>1000) cAddr |= 1<<cPos;
-				if(cPos>=8) if(pulse>1000) cAddrI |= 1<<(cPos-8);
+				if(PULSEIN(pulse, 1687)) {
+					if(cPos<8) cAddr |= 1<<cPos;
+					if(cPos>=8) cAddrI |= 1<<(cPos-8);
+				}
 				cPos++;
 			}
 			if(cPos==16) {
@@ -94,9 +96,11 @@ void NecReader::addPulse (int pulse, int val) {
 				cState = CMD;
 				return;
 			}
-			if(val==0 && PULSEIN(pulse, 560)) return;
+			if(val==0 && PULSEIN(pulse, 560, 350)) return;
 			if(val==0 && PULSEIN(pulse, 1687)) return;
-			if(val==1 && PULSEIN(pulse, 560) ) return;
+			//if(val==1 && PULSEIN(pulse, 560) ) return;
+			//* the upper value seems more correct, but less reliable
+			if(val==1 && PULSEIN(pulse, 600, 350) ) return;
 			break;
 		case CMD:
 			if(cPos<8 && val==0) {
@@ -110,9 +114,9 @@ void NecReader::addPulse (int pulse, int val) {
 				cState = CMD2;
 				return;
 			}
-			if(val==0 && PULSEIN(pulse, 562)) return;
+			if(val==0 && PULSEIN(pulse, 562, 350)) return;
 			if(val==0 && PULSEIN(pulse, 1687)) return;
-			if(val==1 && PULSEIN(pulse, 560) ) return;
+			if(val==1 && PULSEIN(pulse, 560, 350) ) return;
 			break;
 		case CMD2:
 			if(cPos<8 && val==0) {
@@ -124,9 +128,9 @@ void NecReader::addPulse (int pulse, int val) {
 				cState = FIN;
 				return;
 			}
-			if(val==0 && PULSEIN(pulse, 562)) return;
+			if(val==0 && PULSEIN(pulse, 562, 350)) return;
 			if(val==0 && PULSEIN(pulse, 1687)) return;
-			if(val==1 && PULSEIN(pulse, 560) ) return;
+			if(val==1 && PULSEIN(pulse, 560, 350) ) return;
 			break;
 		case FIN:
 			if(val==1 && PULSEIN(pulse, 500)) {

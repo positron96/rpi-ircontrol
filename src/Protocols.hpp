@@ -18,9 +18,11 @@ typedef  void (*CallbackFunc)(ProtocolReader *sender, int addr, int cmd, int cmd
 
 class ProtocolReader {
 protected:
-	static const int THRES = 180;
+	static const int THRES_ = 250;
+	inline int THRES(int d) { return max(THRES_, d/10);}
 	inline int PULSEIN(int pulse, int dur, int thr)	{ return abs(pulse-dur)<thr; }
-	inline int PULSEIN(int pulse, int dur)	{ return PULSEIN(pulse,dur, max(THRES, dur/20) ); }
+	inline int PULSEIN(int pulse, int dur)	{ return PULSEIN(pulse,dur, THRES(dur) ); }
+	inline int PULSEINRANGE(int pulse, int lo, int hi)	{ return pulse<hi && pulse>lo; }
 
 	CallbackFunc callback;
 public:
