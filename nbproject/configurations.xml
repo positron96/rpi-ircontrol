@@ -17,6 +17,7 @@
                    projectFiles="true">
       <itemPath>src/NecReader.cpp</itemPath>
       <itemPath>src/NikonReader.cpp</itemPath>
+      <itemPath>src/Protocols.cpp</itemPath>
       <itemPath>src/irrecv.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -40,7 +41,13 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <preprocessorList>
+            <Elem>DEBUG</Elem>
+          </preprocessorList>
+        </ccTool>
         <linkerTool>
+          <output>/home/osman/work/irrecv-debug</output>
           <linkerLibItems>
             <linkerLibLibItem>wiringPi</linkerLibLibItem>
           </linkerLibItems>
@@ -53,6 +60,8 @@
       <item path="src/NikonReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/NikonReader.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Protocols.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Protocols.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -92,6 +101,8 @@
       <item path="src/NikonReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/NikonReader.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Protocols.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Protocols.hpp" ex="false" tool="3" flavor2="0">
       </item>

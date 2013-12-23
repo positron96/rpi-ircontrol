@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/src/NecReader.o \
 	${OBJECTDIR}/src/NikonReader.o \
+	${OBJECTDIR}/src/Protocols.o \
 	${OBJECTDIR}/src/irrecv.o
 
 
@@ -58,26 +59,31 @@ LDLIBSOPTIONS=-lwiringPi
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/irrecv
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk /home/osman/work/irrecv-debug
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/irrecv: ${OBJECTFILES}
-	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/irrecv ${OBJECTFILES} ${LDLIBSOPTIONS}
+/home/osman/work/irrecv-debug: ${OBJECTFILES}
+	${MKDIR} -p /home/osman/work
+	${LINK.cc} -o /home/osman/work/irrecv-debug ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/src/NecReader.o: src/NecReader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NecReader.o src/NecReader.cpp
+	$(COMPILE.cc) -g -DDEBUG -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NecReader.o src/NecReader.cpp
 
 ${OBJECTDIR}/src/NikonReader.o: src/NikonReader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NikonReader.o src/NikonReader.cpp
+	$(COMPILE.cc) -g -DDEBUG -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NikonReader.o src/NikonReader.cpp
+
+${OBJECTDIR}/src/Protocols.o: src/Protocols.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -DDEBUG -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Protocols.o src/Protocols.cpp
 
 ${OBJECTDIR}/src/irrecv.o: src/irrecv.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/irrecv.o src/irrecv.cpp
+	$(COMPILE.cc) -g -DDEBUG -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/irrecv.o src/irrecv.cpp
 
 # Subprojects
 .build-subprojects:
@@ -85,7 +91,7 @@ ${OBJECTDIR}/src/irrecv.o: src/irrecv.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/irrecv
+	${RM} /home/osman/work/irrecv-debug
 
 # Subprojects
 .clean-subprojects:

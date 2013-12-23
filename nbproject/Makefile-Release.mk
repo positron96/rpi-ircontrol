@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/src/NecReader.o \
 	${OBJECTDIR}/src/NikonReader.o \
+	${OBJECTDIR}/src/Protocols.o \
 	${OBJECTDIR}/src/irrecv.o
 
 
@@ -73,6 +74,11 @@ ${OBJECTDIR}/src/NikonReader.o: src/NikonReader.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/NikonReader.o src/NikonReader.cpp
+
+${OBJECTDIR}/src/Protocols.o: src/Protocols.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Protocols.o src/Protocols.cpp
 
 ${OBJECTDIR}/src/irrecv.o: src/irrecv.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

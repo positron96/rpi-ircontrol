@@ -13,8 +13,8 @@ CND_BUILDDIR=build
 CND_DLIB_EXT=so
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/irrecv
-OUTPUT_BASENAME=irrecv
+OUTPUT_PATH=/home/osman/work/irrecv-debug
+OUTPUT_BASENAME=irrecv-debug
 PACKAGE_TOP_DIR=irrecv/
 
 # Functions

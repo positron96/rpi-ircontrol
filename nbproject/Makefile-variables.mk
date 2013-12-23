@@ -8,9 +8,9 @@ CND_BUILDDIR=build
 CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
-CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=irrecv
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/irrecv
+CND_ARTIFACT_DIR_Debug=/home/osman/work
+CND_ARTIFACT_NAME_Debug=irrecv-debug
+CND_ARTIFACT_PATH_Debug=/home/osman/work/irrecv-debug
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
 CND_PACKAGE_NAME_Debug=irrecv.tar
 CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/irrecv.tar
