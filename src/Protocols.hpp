@@ -24,13 +24,14 @@ protected:
 	inline int PULSEIN(int pulse, int dur)	{ return PULSEIN(pulse,dur, THRES(dur) ); }
 	inline int PULSEINRANGE(int pulse, int lo, int hi)	{ return pulse<hi && pulse>lo; }
 
+
 	CallbackFunc callback;
 public:
+	static const int NO_ADDR = 255;
 	ProtocolReader(CallbackFunc ff) { callback = ff; }
 
     virtual void addPulse  (int pulse, int val) = 0;
 };
-
 
 #endif	/* PROTOCOLS_HPP */
 

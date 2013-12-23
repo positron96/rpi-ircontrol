@@ -54,7 +54,7 @@ void NikonReader::addPulse(int pulse, int val) {
 			if (val == 1 && PULSEIN(pulse, 400)) {
 				cState = 7;
 				if(cHalf == 1) {
-					callback(this, 0, 1, 0);
+					callback(this, NO_ADDR, 1, 0);
 					cHalf = 0;
 					cState = 0;
 				}

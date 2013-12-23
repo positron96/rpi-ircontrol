@@ -12,7 +12,9 @@
 
 #include "NecReader.hpp"
 
+#ifndef DEBUG
 #define printf(fmt, ...) (0)
+#endif
 
 /** Prints current date&time (used for debug logging) */
 char* dt() {
@@ -97,7 +99,7 @@ void NecReader::addPulse (int pulse, int val) {
 				return;
 			}
 			if(val==0 && PULSEIN(pulse, 560, 350)) return;
-			if(val==0 && PULSEIN(pulse, 1687)) return;
+			if(val==0 && PULSEIN(pulse, 1687, 350)) return;
 			//if(val==1 && PULSEIN(pulse, 560) ) return;
 			//* the upper value seems more correct, but less reliable
 			if(val==1 && PULSEIN(pulse, 600, 350) ) return;
@@ -115,7 +117,7 @@ void NecReader::addPulse (int pulse, int val) {
 				return;
 			}
 			if(val==0 && PULSEIN(pulse, 562, 350)) return;
-			if(val==0 && PULSEIN(pulse, 1687)) return;
+			if(val==0 && PULSEIN(pulse, 1687, 350)) return;
 			if(val==1 && PULSEIN(pulse, 560, 350) ) return;
 			break;
 		case CMD2:
@@ -129,7 +131,7 @@ void NecReader::addPulse (int pulse, int val) {
 				return;
 			}
 			if(val==0 && PULSEIN(pulse, 562, 350)) return;
-			if(val==0 && PULSEIN(pulse, 1687)) return;
+			if(val==0 && PULSEIN(pulse, 1687, 350)) return;
 			if(val==1 && PULSEIN(pulse, 560, 350) ) return;
 			break;
 		case FIN:

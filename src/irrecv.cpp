@@ -23,11 +23,15 @@ using namespace std;
 int last;
 
 int lastCmd=0;
+int lastAddr=0;
+int haveCmd = false;
 ProtocolReader *lastSender;
 
 void cmdReceived(ProtocolReader *sender, int addr, int cmd1, int cmd2) {
 
 	lastCmd = cmd1;
+	lastAddr = addr;
+	haveCmd = true;
 	lastSender = sender;
 	//cout<<"callback called cmd1="<<cmd1<<" lastCmd="<<lastCmd<<endl;
 };
@@ -61,13 +65,17 @@ int main(int argc, char** argv) {
 	pinMode(PIN, INPUT);
 
 	while (1) {
-		if(lastCmd!=0) {
-			cout<<"Got cmd "<<lastCmd<<" from "<<typeid(*lastSender).name()<<"; switching led"<<endl;
+		if(haveCmd) {
+			cout<<"Got cmd="<<lastCmd<<" addr="<<lastAddr<<" from "<<typeid(*lastSender).name()<<"; switching led"<<endl;
 
 			char cmd[255];
-			sprintf(cmd, "./lightcontrol -m \"IR beacon cmd %d from %s\"", lastCmd, typeid(*lastSender).name() );
+			sprintf(cmd, "./lightcontrol -m \"IR beacon (addr=%d cmd=%d from %s)\"", lastAddr, lastCmd, typeid(*lastSender).name() );
+#ifndef DEBUG
 			system(cmd);
-			lastCmd = 0;
+#else
+			printf("%s", cmd);
+#endif
+			haveCmd = false;
 			lastSender = NULL;
 
 		}
