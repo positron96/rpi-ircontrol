@@ -37,6 +37,7 @@ void NecReader::addPulse (int pulse, int val) {
 		printf("%s: GOT %d for %dus, state is %d; pos=%d, addr/~addr=%d/%d,  cmd/cmd2=%d/%d\n", dt(),
 			val, pulse, cState, cPos, cAddr, cAddrI, cCmd, cCmd2);
 
+	if(pulse > 15000) { cState=NOTHING; return; }
 	switch(cState) {
 		case NOTHING:
 			if(val==1 && PULSEIN(pulse,9000)) {
