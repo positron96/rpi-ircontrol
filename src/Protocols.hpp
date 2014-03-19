@@ -10,6 +10,7 @@
 
 //#include <cstdlib>
 #include <algorithm>
+#include <string>
 using std::max;
 
 class ProtocolReader;
@@ -28,7 +29,8 @@ protected:
 	CallbackFunc callback;
 public:
 	static const int NO_ADDR = 255;
-	ProtocolReader(CallbackFunc ff) { callback = ff; }
+	std::string tag;
+	ProtocolReader(CallbackFunc ff, std::string _tag) : callback(ff), tag(_tag) {}//{ callback = ff; }
 
     virtual void addPulse  (int pulse, int val) = 0;
 };

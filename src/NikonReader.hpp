@@ -12,7 +12,7 @@
 
 class NikonReader : public ProtocolReader {
 public:
-	NikonReader(CallbackFunc ff) : ProtocolReader(ff),
+	NikonReader(CallbackFunc ff) : ProtocolReader(ff, "Nikon"),
 		cState(0), cHalf(0) { }
 	virtual ~NikonReader();
 

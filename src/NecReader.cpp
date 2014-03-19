@@ -24,8 +24,8 @@ char* dt() {
 	return v;
 }
 
-NecReader::NecReader(CallbackFunc ff):ProtocolReader(ff),
-	cState(NOTHING), cPos(0) {
+NecReader::NecReader(CallbackFunc ff):ProtocolReader(ff, "NEC"),
+	cState(NOTHING), cPos(0)  {
 	//printf("NecProtocolReader()\n");
 }
 

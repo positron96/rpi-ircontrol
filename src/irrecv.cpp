@@ -66,14 +66,23 @@ int main(int argc, char** argv) {
 
 	while (1) {
 		if(haveCmd) {
-			cout<<"Got cmd="<<lastCmd<<" addr="<<lastAddr<<" from "<<typeid(*lastSender).name()<<"; switching led"<<endl;
+			//cout<<"Got cmd="<<lastCmd<<" addr="<<lastAddr<<" from "<<typeid(*lastSender).name()<<"; switching led"<<endl;
 
-			char cmd[255];
-			sprintf(cmd, "./lightcontrol -m \"IR beacon (addr=%d cmd=%d from %s)\"", lastAddr, lastCmd, typeid(*lastSender).name() );
+			char msg[255];
+			//sprintf(cmd, "./lightcontrol -m \"IR beacon (addr=%d cmd=%d from %s)\"", lastAddr, lastCmd, typeid(*lastSender).name() );
+			sprintf(msg, "IR. %d %d %s\n" , lastAddr, lastCmd, static_cast<ProtocolReader*>(lastSender)->tag.c_str());//typeid(*lastSender).name());
 #ifndef DEBUG
-			system(cmd);
+			//system(cmd);
+			const char* pipe = argc>1 ? argv[1] : "missioninput";
+			FILE* fPipe = fopen(pipe, "a");
+			if(fPipe==0) {
+				fprintf(stderr, "error opening pipe");
+			} else {
+				fprintf(fPipe, msg);
+				fclose(fPipe);
+			}
 #else
-			printf("%s", cmd);
+			printf(msg);
 #endif
 			haveCmd = false;
 			lastSender = NULL;
