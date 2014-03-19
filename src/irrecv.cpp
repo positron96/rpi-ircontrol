@@ -66,10 +66,11 @@ int main(int argc, char** argv) {
 
 	while (1) {
 		if(haveCmd) {
-			cout<<"Got cmd="<<lastCmd<<" addr="<<lastAddr<<" from "<<typeid(*lastSender).name()<<"; switching led"<<endl;
+			//cout<<"Got cmd="<<lastCmd<<" addr="<<lastAddr<<" from "<<typeid(*lastSender).name()<<"; switching led"<<endl;
 
 			char cmd[255];
-			sprintf(cmd, "./lightcontrol -m \"IR beacon (addr=%d cmd=%d from %s)\"", lastAddr, lastCmd, typeid(*lastSender).name() );
+			//sprintf(cmd, "./lightcontrol -m \"IR beacon (addr=%d cmd=%d from %s)\"", lastAddr, lastCmd, typeid(*lastSender).name() );
+			sprintf(cmd, "./lightcontrol -m \"IR beacon (addr=%d cmd=%d from %s)\"" , lastAddr, lastCmd, static_cast<ProtocolReader*>(lastSender)->tag.c_str());
 #ifndef DEBUG
 			system(cmd);
 #else
